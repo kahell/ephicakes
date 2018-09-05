@@ -125,7 +125,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                     }elseif (strpos($event['message']['text'], 'konfirmasi') !== false) {
                       $textMessageBuilder1 = new TextMessageBuilder("Terimakasih sudah mentransfer. Kami akan mengecek pengiriman anda dan kemudian akan mengirimkan anda konfirmasi melalu nomor HP anda.
                       Paling lambat 1x24 jam.\n
-                      Jika belum menerima balasan dari kami 1x24 jam silahkan hubungi kami melalui cs@ephicakes.com")
+                      Jika belum menerima balasan dari kami 1x24 jam silahkan hubungi kami melalui cs@ephicakes.com");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                     }else{
