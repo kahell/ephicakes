@@ -96,36 +96,25 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                     */
                     $multiMessageBuilder = new MultiMessageBuilder();
                     if (strpos($event['message']['text'], '1') !== false) {
-                      $textMessageBuilder1 = new TextMessageBuilder("Python Cakes - 38.000\n Python cakes adalah kueh berbentuk logo python yang dibuat menggunakan coklat pilihan
-                      dan kacang almond yang lezat");
-                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut: \n
-                      Nama: \nAlamat\nNomor HP\nJumlah Pesanan\nKirim ke nomor rekening 0000-01-0000000-129, A/n. Helfi Pangestu\n
-                      Ketika sudah transfer silahkan konfirmasi dengan ketik: konfirmasi");
+                      $textMessageBuilder1 = new TextMessageBuilder("Python Cakes - 38.000\nPython cakes adalah kueh berbentuk logo python yang dibuat menggunakan coklat pilihan dan kacang almond yang lezat");
+                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut:\nNama:\nAlamat\nNomor HP:\nJumlah Pesanan:\nKirim ke nomor rekening 0000-01-0000000-129, A/n. Helfi Pangestu\nKetika sudah transfer silahkan konfirmasi dengan ketik: konfirmasi");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                       $multiMessageBuilder->add($textMessageBuilder2);
                     }elseif (strpos($event['message']['text'], '2') !== false) {
-                      $textMessageBuilder1 = new TextMessageBuilder("Java Cakes - 68.000\n Java cakes adalah kueh berbentuk logo java yang dibuat menggunakan storowbery pilihan
-                      dan dibalut dengan keju yang sangat lezat");
-                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut: \n
-                      Nama: \nAlamat\nNomor HP\nJumlah Pesanan\nKirim ke nomor rekening 0000-01-0000000-129, A/n. Helfi Pangestu\n
-                      Ketika sudah transfer silahkan konfirmasi dengan ketik: konfirmasi");
+                      $textMessageBuilder1 = new TextMessageBuilder("Java Cakes - 68.000\n Java cakes adalah kueh berbentuk logo java yang dibuat menggunakan storowbery pilihan dan dibalut dengan keju yang sangat lezat");
+                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut:\nNama:\nAlamat\nNomor HP:\nJumlah Pesanan:\nKirim ke nomor rekening 0000-01-0000000-129, A/n. Helfi Pangestu\nKetika sudah transfer silahkan konfirmasi dengan ketik: konfirmasi");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                       $multiMessageBuilder->add($textMessageBuilder2);
                     }elseif (strpos($event['message']['text'], '3') !== false) {
-                      $textMessageBuilder1 = new TextMessageBuilder("PHP Cakes - 68.000\n PHP cakes adalah kueh berbentuk logo PHP yang dibuat menggunakan coklat dan strowbery pilihan
-                      dan diberikan taburan blueberry segar pilihan");
-                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut: \n
-                      Nama: \nAlamat\nNomor HP\nJumlah Pesanan\nKirim ke nomor rekening 0000-01-0000000-129, A/n. Helfi Pangestu\n
-                      Ketika sudah transfer silahkan konfirmasi dengan ketik: konfirmasi");
+                      $textMessageBuilder1 = new TextMessageBuilder("PHP Cakes - 68.000\n PHP cakes adalah kueh berbentuk logo PHP yang dibuat menggunakan coklat dan strowbery pilihan dan diberikan taburan blueberry segar pilihan");
+                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut:\nNama:\nAlamat\nNomor HP:\nJumlah Pesanan:\nKirim ke nomor rekening 0000-01-0000000-129, A/n. Helfi Pangestu\nKetika sudah transfer silahkan konfirmasi dengan ketik: konfirmasi");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                       $multiMessageBuilder->add($textMessageBuilder2);
                     }elseif (strpos($event['message']['text'], 'konfirmasi') !== false) {
-                      $textMessageBuilder1 = new TextMessageBuilder("Terimakasih sudah mentransfer. Kami akan mengecek pengiriman anda dan kemudian akan mengirimkan anda konfirmasi melalu nomor HP anda.
-                      Paling lambat 1x24 jam.\n
-                      Jika belum menerima balasan dari kami 1x24 jam silahkan hubungi kami melalui cs@ephicakes.com");
+                      $textMessageBuilder1 = new TextMessageBuilder("Terimakasih sudah mentransfer. Kami akan mengecek pengiriman anda dan kemudian akan mengirimkan anda konfirmasi melalu nomor HP anda.Paling lambat 1x24 jam.\nJika belum menerima balasan dari kami 1x24 jam silahkan hubungi kami melalui cs@ephicakes.com");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                     }else{
