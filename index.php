@@ -53,7 +53,67 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
         }
     }
 
-    // kode aplikasi nanti disini
+    // Kode aplikasi disini
+    $data = json_decode($body, true);
+    if(is_array($data['events'])){
+        foreach ($data['events'] as $event)
+        {
+            if ($event['type'] == 'message')
+            {
+                if($event['message']['type'] == 'text')
+                {
+                    // send same message as reply to user
+                    // $result = $bot->replyText($event['replyToken'], $event['message']['text']);
+
+                    // or we can use replyMessage() instead to send reply message
+                    // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                    // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                    /* Send sticker message
+                    * List $packageId dan $stickerId https://developers.line.me/media/messaging-api/messages/sticker_list.pdf
+                    *  $stickerId = 3;
+                    * $packageId = 1;
+                    * $stickerMessageBuilder = new StickerMessageBuilder($packageId, $stickerId);
+                    * $bot->replyMessage($replyToken, $stickerMessageBuilder);
+                    */
+
+                    /* Send Image message
+                    * add that code to top use \LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
+                    * $imageMessageBuilder = new ImageMessageBuilder('url gambar asli', 'url gambar preview');
+                    * $bot->replyMessage($replyToken, $imageMessageBuilder);
+                    */
+
+                    /* Send audio message
+                    * use \LINE\LINEBot\MessageBuilder\AudioMessageBuilder;
+                    * $audioMessageBuilder = new AudioMessageBuilder('url audio asli', 'durasi audio');
+                    * $bot->replyMessage($replyToken, $audioMessageBuilder);
+                    */
+
+                    /* Send Video Message
+                    * use \LINE\LINEBot\MessageBuilder\VideoMessageBuilder;
+                    * $videoMessageBuilder = new VideoMessageBuilder('url video asli', 'url gambar preview video');
+                    * $bot->replyMessage($replyToken, $videoMessageBuilder);
+                    */
+
+                    // send multiple message
+                    $textMessageBuilder1 = new TextMessageBuilder('Selamat datang di ephi cake, Ephi Cake adalah toko kue yang memilik tema programmer!');
+                    $textMessageBuilder2 = new TextMessageBuilder("Kami memilik variasi menu! \n 1. Python Cakes\n 2. Java Cakes\n 3. PHP Cakes");
+                    $textMessageBuilder3 = new TextMessageBuilder('Jika ingin pesan silahkan ketik: pesan 1 (1,2, atau 3)');
+                    $stickerMessageBuilder = new StickerMessageBuilder(1, 106);
+
+                    $multiMessageBuilder = new MultiMessageBuilder();
+                    $multiMessageBuilder->add($textMessageBuilder1);
+                    $multiMessageBuilder->add($textMessageBuilder2);
+                    $multiMessageBuilder->add($textMessageBuilder3);
+                    $multiMessageBuilder->add($stickerMessageBuilder);
+
+                    $bot->replyMessage($event['replyToken'], $multiMessageBuilder);
+
+                    return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+                }
+            }
+        }
+    }
 
 });
 
