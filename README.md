@@ -5,7 +5,7 @@
 </p>
 
 ## Kuis Kode
-Kuis Kode chat bot for Line
+Ephi cakes is LINE chat bot for ordering cakes from ephis store
 ```
 Show menu
 Detail cakes
