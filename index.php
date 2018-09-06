@@ -99,9 +99,9 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                       $msg = str_replace(" ","",$event['message']['text']);
                       $msg = str_replace("Nama:","",$msg);
                       $msg = str_replace("Alamat:","",$msg);
-                      $msg = str_replace("Nomor HP:","",$msg);
+                      $msg = str_replace("NomorHP:","",$msg);
                       $msg = str_replace("Kueh:","",$msg);
-                      $msg = str_replace("Jumlah Pesanan:","",$msg);
+                      $msg = str_replace("JumlahPesanan:","",$msg);
                       $msg = explode("\n",$msg);
 
                       $nama = $msg[1];
@@ -133,7 +133,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
 
                       $textMessageBuilder1 = new TextMessageBuilder("Terimakasih ".$nama." sudah melakukan order. Data anda sudah masuk kedalam sistem kami. Silahkan melakukan pembayaran sebesar ".$prices."  ke nomor rekening 0000-01-0000000-129, A/n. Helfi Pangestu\nKetika sudah transfer silahkan konfirmasi dengan format:\nkonfirmasi - Nama - NO. Rekening - Jumlah Transfer - Tanggal");
                       // $textMessageBuilder2 = new TextMessageBuilder("idxNama: $idxNama - idxAlamat: $idxAlamat - idxNoHP: $idxNoHP - idxKueh: $idxKueh - idxJumlah: $idxJmlPesan");
-                      $textMessageBuilder2 = new TextMessageBuilder($msg[0]);
+                      $textMessageBuilder2 = new TextMessageBuilder($msg[0]." - ".$msg[1]." - ".$msg[2]." - ".$msg[3]." - ". $msg[4]. " - " . $msg[5]);
                       $textMessageBuilder3 = new TextMessageBuilder("Nama: $nama - Alamat: $alamat - NoHP: $noHP - Kueh: $kueh - Jumlah: $jmlPesan");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
