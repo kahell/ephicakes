@@ -118,7 +118,6 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                     }elseif (strpos($event['message']['text'], 'order') !== false) {
-                      "-ORDER\nNama: Helfi\nAlamat: Bekasii\nNomor HP: 083873767405\nKueh: python\nJumlah Pesanan: 2"
                       $msg = str_replace(" ","",$event['message']['text']);
                       $msg = str_replace("Nama:","",$msg);
                       $msg = str_replace("Alamat:","",$msg);
