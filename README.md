@@ -24,5 +24,11 @@ Slim Framework
 - Activate your xamp / wamp
 - Open your browser and type localhost/ephiCakeBot/webhook <-- to get webhook
 
+## GIT
+- git add .
+- git commit -m "initial commit"
+- git push heroku master
+- heroku logs --tail
+
 ## Preview
 check website : https://ephicakebot.herokuapp.com/index.php/webhook
