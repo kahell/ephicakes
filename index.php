@@ -97,19 +97,19 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                     $multiMessageBuilder = new MultiMessageBuilder();
                     if (strpos($event['message']['text'], '1') !== false) {
                       $textMessageBuilder1 = new TextMessageBuilder("Python Cakes - Rp. 38.000\nPython cakes adalah kueh berbentuk logo python yang dibuat menggunakan coklat pilihan dan kacang almond yang lezat");
-                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut:\n-ORDER\nNama:\nAlamat:\nNomor HP:\nKueh: (python, java,php)\nJumlah Pesanan:");
+                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut:\n-ORDER\nNama:\nAlamat:\nNomor HP:\nKueh: (python, java,php)\nJumlah Pesanan:\n*hati-hati penulisan wajib sama persis.");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                       $multiMessageBuilder->add($textMessageBuilder2);
                     }elseif (strpos($event['message']['text'], '2') !== false) {
                       $textMessageBuilder1 = new TextMessageBuilder("Java Cakes - Rp. 80.000\n Java cakes adalah kueh berbentuk logo java yang dibuat menggunakan storowbery pilihan dan dibalut dengan keju yang sangat lezat");
-                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut:\n-ORDER\nNama:\nAlamat:\nNomor HP:\nKueh: (python, java,php)\nJumlah Pesanan:");
+                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut:\n-ORDER\nNama:\nAlamat:\nNomor HP:\nKueh: (python, java,php)\nJumlah Pesanan:\n*hati-hati penulisan wajib sama persis.");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                       $multiMessageBuilder->add($textMessageBuilder2);
                     }elseif (strpos($event['message']['text'], '3') !== false) {
                       $textMessageBuilder1 = new TextMessageBuilder("PHP Cakes - Rp. 102.000\n PHP cakes adalah kueh berbentuk logo PHP yang dibuat menggunakan coklat dan strowbery pilihan dan diberikan taburan blueberry segar pilihan");
-                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut:\n-ORDER\nNama:\nAlamat\nNomor HP:\nKueh: (python, java,php)\nJumlah Pesanan:");
+                      $textMessageBuilder2 = new TextMessageBuilder("Silahkan order dengan template sebagai berikut:\n-ORDER\nNama:\nAlamat\nNomor HP:\nKueh: (python, java,php)\nJumlah Pesanan:\n*hati-hati penulisan wajib sama persis.");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                       $multiMessageBuilder->add($textMessageBuilder2);
@@ -117,18 +117,34 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                       $textMessageBuilder1 = new TextMessageBuilder("Terimakasih sudah mentransfer. Kami akan mengecek pengiriman anda dan kemudian akan mengirimkan anda konfirmasi melalu nomor HP anda.Paling lambat 1x24 jam.\nJika belum menerima balasan dari kami 1x24 jam silahkan hubungi kami melalui cs@ephicakes.com");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
-                    }elseif (strpos($event['message']['text'], "-ORDER") !== false) {
-                      $idxNama = strpos($event['message']['text'], "Nama:");
-                      $idxAlamat = strpos($event['message']['text'], "Alamat:");
-                      $idxNoHP = strpos($event['message']['text'], "Nomor HP:");
-                      $idxKueh = strpos($event['message']['text'], "Kueh:");
-                      $idxJmlPesan = strpos($event['message']['text'], "Jumlah Pesanan:");
+                    }elseif (strpos($event['message']['text'], 'order') !== false) {
+                      "-ORDER\nNama: Helfi\nAlamat: Bekasii\nNomor HP: 083873767405\nKueh: python\nJumlah Pesanan: 2"
+                      $msg = str_replace(" ","",$event['message']['text']);
+                      $msg = str_replace("Nama:","",$msg);
+                      $msg = str_replace("Alamat:","",$msg);
+                      $msg = str_replace("Nomor HP:","",$msg);
+                      $msg = str_replace("Kueh:","",$msg);
+                      $msg = str_replace("Jumlah Pesanan:","",$msg);
+                      $msg = explode("\n",$msg);
 
-                      $nama = substr($event['message']['text'],($idxNama + 5),($idxAlamat - 1));
-                      $alamat = substr($event['message']['text'],($idxAlamat + 6),($idxNoHP -1));
-                      $noHP = substr($event['message']['text'],($idxNoHP + 8),($idxKueh - 1));
-                      $kueh = substr($event['message']['text'],($idxKueh + 4),($idxJmlPesan - 1));
-                      $jmlPesan = substr($event['message']['text'],($idxJmlPesan + 15));
+                      $nama = $msg[1];
+                      $alamat = $msg[2];
+                      $noHP = $msg[3];
+                      $kueh = $msg[4];
+                      $jmlPesan = $msg[5];
+
+
+                      // $idxNama = strpos($event['message']['text'], "Nama:");
+                      // $idxAlamat = strpos($event['message']['text'], "Alamat:");
+                      // $idxNoHP = strpos($event['message']['text'], "Nomor HP:");
+                      // $idxKueh = strpos($event['message']['text'], "Kueh:");
+                      // $idxJmlPesan = strpos($event['message']['text'], "Jumlah Pesanan:");
+                      //
+                      // $nama = substr($event['message']['text'],($idxNama + 5),($idxAlamat - 1));
+                      // $alamat = substr($event['message']['text'],($idxAlamat + 6),($idxNoHP -1));
+                      // $noHP = substr($event['message']['text'],($idxNoHP + 8),($idxKueh - 1));
+                      // $kueh = substr($event['message']['text'],($idxKueh + 4),($idxJmlPesan - 1));
+                      // $jmlPesan = substr($event['message']['text'],($idxJmlPesan + 15));
 
                       if (strpos($event['message']['text'], 'python') !== false) {
                         $prices = intval($jmlPesan) * 38000;
@@ -139,11 +155,11 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
                       }
 
                       $textMessageBuilder1 = new TextMessageBuilder("Terimakasih ".$nama." sudah melakukan order. Data anda sudah masuk kedalam sistem kami. Silahkan melakukan pembayaran sebesar ".$prices."  ke nomor rekening 0000-01-0000000-129, A/n. Helfi Pangestu\nKetika sudah transfer silahkan konfirmasi dengan format:\nkonfirmasi - Nama - NO. Rekening - Jumlah Transfer - Tanggal");
-                      $textMessageBuilder2 = new TextMessageBuilder("idxNama: $idxNama - idxAlamat: $idxAlamat - idxNoHP: $idxNoHP - idxKueh: $idxKueh - idxJumlah: $idxJmlPesan");
+                      // $textMessageBuilder2 = new TextMessageBuilder("idxNama: $idxNama - idxAlamat: $idxAlamat - idxNoHP: $idxNoHP - idxKueh: $idxKueh - idxJumlah: $idxJmlPesan");
                       $textMessageBuilder3 = new TextMessageBuilder("Nama: $nama - Alamat: $alamat - NoHP: $noHP - Kueh: $kueh - Jumlah: $jmlPesan");
 
                       $multiMessageBuilder->add($textMessageBuilder1);
-                      $multiMessageBuilder->add($textMessageBuilder2);
+                      // $multiMessageBuilder->add($textMessageBuilder2);
                       $multiMessageBuilder->add($textMessageBuilder3);
                     }else{
                       // send multiple message
