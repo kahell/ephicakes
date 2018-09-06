@@ -118,17 +118,17 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
 
                       $multiMessageBuilder->add($textMessageBuilder1);
                     }elseif (strpos($event['message']['text'], "order") !== false) {
-                      $idxNama = strpos($event['message']['text'], "\nNama:");
-                      $idxAlamat = strpos($event['message']['text'], "\nAlamat:");
-                      $idxNoHP = strpos($event['message']['text'], "\nNomor HP:");
-                      $idxKueh = strpos($event['message']['text'], "\nKueh:");
-                      $idxJmlPesan = strpos($event['message']['text'], "\nJumlah Pesanan:");
+                      $idxNama = strpos($event['message']['text'], "Nama");
+                      $idxAlamat = strpos($event['message']['text'], "Alamat");
+                      $idxNoHP = strpos($event['message']['text'], "Nomor HP");
+                      $idxKueh = strpos($event['message']['text'], "Kueh");
+                      $idxJmlPesan = strpos($event['message']['text'], "Jumlah Pesanan");
 
-                      $nama = substr($event['message']['text'],$idxNama,$idxAlamat);
-                      $alamat = substr($event['message']['text'],$idxAlamat,$idxNoHP);
-                      $noHP = substr($event['message']['text'],$idxNoHP,$idxKueh);
-                      $kueh = substr($event['message']['text'],$idxKueh,$idxJmlPesan);
-                      $jmlPesan = substr($event['message']['text'],$idxJmlPesan);
+                      $nama = substr($event['message']['text'],($idxNama + 5),($idxAlamat - 1));
+                      $alamat = substr($event['message']['text'],($idxAlamat + 6),($idxNoHP -1));
+                      $noHP = substr($event['message']['text'],($idxNoHP + 8),($idxKueh - 1));
+                      $kueh = substr($event['message']['text'],($idxKueh + 4),($idxJmlPesan - 1));
+                      $jmlPesan = substr($event['message']['text'],($idxJmlPesan + 15));
 
                       if (strpos($event['message']['text'], 'python') !== false) {
                         $prices = intval($jmlPesan) * 38000;
