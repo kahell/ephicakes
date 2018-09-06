@@ -29,6 +29,7 @@ Slim Framework
 - git commit -m "initial commit"
 - git push heroku master
 - heroku logs --tail
+- git push -u origin master
 
 ## Preview
 check website : https://ephicakebot.herokuapp.com/index.php/webhook
